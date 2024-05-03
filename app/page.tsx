@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-
 const CAT_FACT_URL = "https://cat-fact.herokuapp.com/facts";
 
 export type Fact = {
@@ -22,22 +20,20 @@ async function Home() {
 
   return (
     <main className="p-24">
-      <Suspense fallback={<p className="text-center">Loading...</p>}>
-        <ul className="space-y-2">
-          {
-            // Map over the fetched data and create a list item for each fact.
-            response?.map(fact => {
-              // Return a JSX element representing a list item.
-              return (
-                <li key={fact._id}>
-                  {fact.text} {" "}
-                  <small>{new Date(fact.updatedAt).toLocaleDateString()}</small>
-                </li>
-              )
-            })
-          }
-        </ul>
-      </Suspense>
+      <ul className="space-y-2">
+        {
+          // Map over the fetched data and create a list item for each fact.
+          response?.map(fact => {
+            // Return a JSX element representing a list item.
+            return (
+              <li key={fact._id}>
+                {fact.text} {" "}
+                <small>{new Date(fact.updatedAt).toLocaleDateString()}</small>
+              </li>
+            )
+          })
+        }
+      </ul>
     </main>
 
   );
