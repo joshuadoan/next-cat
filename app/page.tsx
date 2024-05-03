@@ -8,48 +8,6 @@ export type Fact = {
   updatedAt: string; // Datetime
 };
 
-type GenericError = {
-  statusText: string;
-  status?: number;
-};
-
-enum ActionTypes {
-  SET_DATA = "SET_DATA",
-  SET_LOADING = "SET_LOADING",
-  SET_ERROR = "SET_ERROR",
-}
-
-type AppState = {
-  selectedFact: Fact | null,
-  data: Fact[] | null;
-  isLoading: boolean;
-  error: GenericError | null;
-}
-
-type SetDataAction = {
-  type: ActionTypes.SET_DATA
-  payload: Fact[] | null,
-}
-
-type SetLoadingAction = {
-  type: ActionTypes.SET_LOADING,
-  payload: boolean,
-}
-
-type SetErrorAction = {
-  type: ActionTypes.SET_ERROR,
-  payload: GenericError | null,
-}
-
-type Action = SetDataAction | SetLoadingAction | SetErrorAction;
-
-const defaultAppState: AppState = {
-  selectedFact: null,
-  data: null,
-  isLoading: true,
-  error: null,
-}
-
 async function fetchCatFact(): Promise<Fact[]> {
   const res = await fetch(CAT_FACT_URL);
   return res.json()
